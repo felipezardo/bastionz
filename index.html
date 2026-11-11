@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mythic Bastionland — Fichas</title>
+  <meta name="description" content="Fichas digitais e gerador aleatório de cavaleiros para Mythic Bastionland.">
+  <meta name="theme-color" content="#0f1a1f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M6 6h88v52c0 30-30 48-44 56C36 106 6 88 6 58z' fill='%23431e25' stroke='%23c79a3b' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400&family=Alegreya+Sans:wght@400;600;700&family=Pirata+One&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#app" data-i18n="skip">Ir para o conteúdo</a>
+
+  <!-- Forma do escudo usada para recortar o retrato na ficha -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs><clipPath id="shield-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0.03,0.02 H0.97 V0.55 C0.97,0.8 0.7,0.93 0.5,0.99 C0.3,0.93 0.03,0.8 0.03,0.55 Z"/>
+    </clipPath></defs>
+  </svg>
+
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="Mythic Bastionland">Mythic <b>Bastionland</b></a>
+    <span class="crumb" id="crumb"></span>
+    <span class="spacer"></span>
+    <div class="langs" role="group" id="langs" aria-label="Idioma / Language"></div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+  <div id="toasts" role="status" aria-live="polite"></div>
+  <noscript><p style="padding:2rem">Este site precisa de JavaScript. / This site needs JavaScript.</p></noscript>
+
+  <script src="js/knights-data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/rules.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/pickers.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/forge.js"></script>
+  <script src="js/sheet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
