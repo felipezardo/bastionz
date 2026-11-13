@@ -134,6 +134,8 @@
     },
   };
 
+  MB.i18nAdd = (pt, en) => { Object.assign(D.pt, pt); Object.assign(D.en, en); };
+
   const KEY = 'mb.lang';
   const detect = () => ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase().startsWith('pt') ? 'pt' : 'en';
   let lang;

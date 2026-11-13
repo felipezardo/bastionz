@@ -36,6 +36,8 @@
     swap: svg('<path d="M4 8h14l-3-3M20 16H6l3 3"/>'),
     print: svg('<path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/>'),
     close: svg('<path d="M6 6l12 12M18 6 6 18"/>'),
+    sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+    moon: svg('<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/>'),
     up: svg('<path d="M6 15l6-6 6 6"/>'),
   };
 

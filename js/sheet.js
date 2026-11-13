@@ -16,6 +16,7 @@
       el('button', { class: 'step down', type: 'button', tabindex: '-1', 'aria-label': `${t('sheet.dec')}: ${label}`, text: '▼', onclick: () => step(-1) }));
     return { node, input };
   }
+  MB.numBox = numBox;
   const slabel = (key) => { const [a, b] = t('vl.' + key); return el('span', { class: 'slabel' }, a, b ? el('small', { text: b }) : null); };
 
   MB.views.sheet = function (root, id) {
@@ -54,11 +55,11 @@
       oninput: () => { k.name = nameIn.value; touch(); } });
     const fateIn = el('input', { class: 'under', type: 'text', maxlength: 120, value: k.fate, placeholder: t('sheet.fatePh'), 'aria-label': t('sheet.fate'),
       oninput: () => { k.fate = fateIn.value; touch(); } });
-    const shieldImg = el('img', { src: MB.portrait(k), alt: '', width: 150, height: 180 });
+    const shieldImg = el('img', { src: MB.portrait(k), alt: '', width: 150, height: 225 });
     const shield = el('button', { class: 'shield-btn', type: 'button', 'aria-label': t('sheet.portrait'),
       onclick: () => MB.portraitDialog(k, (value) => { k.image = value; shieldImg.src = MB.portrait(k); touch(); }) },
       shieldImg,
-      el('span', { html: '<svg class="frame" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true"><path d="M3,2.4H97V66C97,96 70,111.6 50,118.8C30,111.6 3,96 3,66Z" fill="none" stroke="#141a1c" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>' }),
+      el('span', { html: '<svg class="frame" viewBox="0 0 100 150" preserveAspectRatio="none" aria-hidden="true"><path d="M4,22.5C4,9 20,2.2 50,2.2C80,2.2 96,9 96,22.5C96,78 74,120 50,148.5C26,120 4,78 4,22.5Z" fill="none" stroke="#141a1c" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>' }),
       el('span', { class: 'hint', text: t('sheet.portrait') }));
     // o <span> com svg acima é só um invólucro; promove o svg para filho direto do botão
     shield.replaceChild(shield.querySelector('svg'), shield.children[1]);
