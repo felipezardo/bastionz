@@ -62,6 +62,26 @@
     drawChips(); drawGrid(); drawHist();
   }
 
+  /** Tabela d6 própria do Mito: um d6 por coluna. */
+  function mythTable(m) {
+    const L = MB.lang(); const entry = (window.MB_MYTH_TABLES || {})[m.id];
+    if (!entry) return null;
+    const tb = entry[L]; const fallback = (L === 'pt' && entry.ptFallback) || (L === 'en' && entry.enFallback);
+    const result = el('p', { class: 'statline', 'aria-live': 'polite' });
+    const body = el('tbody', {}, tb.rows.map((r, i) => el('tr', {}, el('td', { text: i + 1 }), r.map((c) => el('td', { text: c })))));
+    const roll = () => {
+      body.querySelectorAll('.hit').forEach((n) => n.classList.remove('hit'));
+      const picked = tb.cols.map((_, c) => { const d = MB.d(6); body.children[d - 1].children[c + 1].classList.add('hit'); return tb.rows[d - 1][c]; });
+      result.textContent = picked.join(' · ');
+      history.unshift(`${m.name[L]} – ${tb.title}: ${picked.join(' ')}`); history.length = Math.min(history.length, 14);
+    };
+    return el('div', {}, el('h3', { text: `${t('myth.table')}: ${tb.title}` }),
+      fallback ? el('p', { class: 'muted', text: t('myth.tableFallback') }) : null,
+      el('div', { class: 'spark' }, el('table', {}, el('thead', {}, el('tr', {}, el('th', { text: 'd6' }), tb.cols.map((c) => el('th', { text: c })))), body)),
+      el('div', { class: 'actions', style: 'margin-top:.6rem' },
+        el('button', { class: 'btn sm', type: 'button', html: MB.icons.d20 + '<span>' + t('myth.tableRoll') + '</span>', onclick: roll }), result));
+  }
+
   /* ---------- Mitos e Cavaleiros ---------- */
   function mythsTab(box) {
     const L = MB.lang(); const mythBox = el('div', {}); const knightBox = el('div', {});
@@ -78,6 +98,7 @@
         el('ol', { class: 'omens' }, m.omens[L].map((o) => el('li', {}, el('label', {}, el('input', { type: 'checkbox' }), el('span', { text: o }))))),
         el('h3', { text: t('myth.places') }),
         el('dl', { class: 'places' }, m.places[L].flatMap(([k, v]) => [el('dt', { text: k }), el('dd', { text: v })])),
+        mythTable(m),
         el('h3', { text: t('myth.cast') }),
         el('div', { class: 'castgrid' }, m.cast[L].map((c) => el('div', { class: 'rcard' },
           el('div', { class: 'enemy-head' }, el('b', { text: c.name }), el('span', { class: 'spacer' }),

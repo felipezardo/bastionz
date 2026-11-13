@@ -53,4 +53,6 @@
     'adv.choose': 'Add to which adventure?', 'adv.createFrom': 'New adventure with this Myth', 'adv.added': 'Myth added to the adventure.',
     'adv.deleteTitle': 'Delete adventure?', 'adv.deleteBody': 'The adventure and its notes will be removed from this browser.',
   });
+  window.MB.i18nAdd({ 'myth.table': 'Tabela do Mito', 'myth.tableRoll': 'Rolar d6 por coluna', 'myth.tableFallback': 'Esta tabela só está disponível em inglês no PDF em português.' },
+    { 'myth.table': 'Myth table', 'myth.tableRoll': 'Roll d6 per column', 'myth.tableFallback': 'This table is only available in Portuguese in the source.' });
 })();
