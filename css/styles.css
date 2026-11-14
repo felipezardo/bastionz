@@ -428,3 +428,9 @@ input.dmg{width:76px;text-align:center}
 .enotes-view{margin:.5rem 0 .2rem;font-size:.97rem}
 .estat .btn.icon-btn{width:32px;height:32px;min-height:32px}
 @media print{.dicepop{display:none!important}}
+
+/* ---------- Arte dos Mitos ---------- */
+.mythart{width:100%;height:auto;aspect-ratio:800/418;object-fit:cover;border:1px solid var(--line);border-radius:var(--radius);margin:.6rem 0 .4rem;background:var(--ink-3);
+  animation:rise .5s var(--ease) both}
+.mythart.sm{max-height:150px;object-position:center}
+.mythart:not(.sm){max-width:780px;display:block}

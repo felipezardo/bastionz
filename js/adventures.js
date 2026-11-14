@@ -64,6 +64,7 @@
           el('div', { class: 'enemy-head' }, el('h3', { text: m.name[L] }), el('span', { class: 'spacer' }),
             el('button', { class: 'btn sm icon-btn ghost danger', type: 'button', title: t('adv.removeMyth'), 'aria-label': `${t('adv.removeMyth')}: ${m.name[L]}`, html: MB.icons.trash,
               onclick: () => { a.myths = a.myths.filter((x) => x !== mm); save(); drawMyths(); } })),
+          el('img', { class: 'mythart sm', src: `assets/myths/${m.id}.webp`, alt: '', loading: 'lazy', width: 800, height: 418 }),
           el('ol', { class: 'omens' }, m.omens[L].map((o, i) => el('li', {},
             el('label', {}, el('input', { type: 'checkbox', checked: !!mm.revealed[i], onchange: (e) => { mm.revealed[i] = e.target.checked; persist(); } }),
               el('span', { text: o }))))));

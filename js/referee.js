@@ -94,6 +94,7 @@
       mythBox.replaceChildren(el('div', { class: 'panel myth' },
         el('div', { class: 'enemy-head' }, el('h2', { text: m.name[L] }), el('span', { class: 'dice-tag', text: t('forge.d6d12', m.d6, m.d12) }), el('span', { class: 'spacer' }),
           el('button', { class: 'btn sm', type: 'button', html: MB.icons.plus + '<span>' + t('myth.toAdventure') + '</span>', onclick: () => MB.addMythToAdventure(m.id) })),
+        el('img', { class: 'mythart', src: `assets/myths/${m.id}.webp`, alt: '', width: 800, height: 418 }),
         el('h3', { text: t('myth.omens') }),
         el('ol', { class: 'omens' }, m.omens[L].map((o) => el('li', {}, el('label', {}, el('input', { type: 'checkbox' }), el('span', { text: o }))))),
         el('h3', { text: t('myth.places') }),
