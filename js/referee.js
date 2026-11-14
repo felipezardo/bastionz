@@ -105,7 +105,7 @@
             el('button', { class: 'btn sm', type: 'button', html: MB.icons.plus + '<span>' + t('myth.toTracker') + '</span>',
               onclick: () => { MB.enemyStore.add({ name: c.name, vig: c.vig, cla: c.cla, spi: c.spi, gd: c.gd, notes: c.details.join(' ') }); MB.toast(t('en.added'), 'ok'); } })),
           el('p', { class: 'statline', text: `${t('v.vig')} ${c.vig} · ${t('v.cla')} ${c.cla} · ${t('v.spi')} ${c.spi} · ${c.gd} ${t('v.gd')}` }),
-          paras(c.details).map((d) => el('p', { text: d })))))));
+          paras(c.details).map((d) => el('p', {}, MB.diceify(d, c.name))))))));
     }
     const rollMyth = () => { const d6 = MB.d(6), d12 = MB.d(12); state.mythId = `${d6}-${d12}`; drawMyth(); };
 
@@ -116,8 +116,8 @@
         el('img', { src: `assets/knights/${id}.webp`, alt: '', width: 120, height: 200 }),
         el('div', {}, el('h2', { text: kd.name }),
           el('p', { class: 'statline', text: `${t('v.vig')} ${st.vig} · ${t('v.cla')} ${st.cla} · ${t('v.spi')} ${st.spi} · ${st.gd} ${t('v.gd')}` }),
-          el('p', {}, el('b', { text: kd.ability.name + '. ' }), kd.ability.text),
-          el('p', {}, el('b', { text: kd.passion.name + '. ' }), kd.passion.text),
+          el('p', {}, el('b', { text: kd.ability.name + '. ' }), MB.diceify(kd.ability.text, kd.name)),
+          el('p', {}, el('b', { text: kd.passion.name + '. ' }), MB.diceify(kd.passion.text, kd.name)),
           el('button', { class: 'btn sm', type: 'button', html: MB.icons.plus + '<span>' + t('myth.toTracker') + '</span>',
             onclick: () => { MB.enemyStore.add({ name: kd.name, ...st, notes: `${kd.property.join('; ')}. ${kd.ability.name}: ${kd.ability.text}` }); MB.toast(t('en.added'), 'ok'); } }))));
     }

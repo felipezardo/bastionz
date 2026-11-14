@@ -404,3 +404,27 @@ input.dmg{width:76px;text-align:center}
 .scenes input[type=checkbox]{accent-color:var(--accent-bg);width:1.1rem;height:1.1rem}
 .log li{display:flex;justify-content:space-between;gap:.5rem;align-items:center;color:var(--sage)}
 .panel .log{max-height:none}
+
+/* ---------- Dados clicáveis e painel de rolagem ---------- */
+.dx{font:inherit;font-family:var(--font-ui);font-weight:700;font-size:.88em;padding:0 .4em;margin:0 .1em;border:1px solid var(--accent);border-radius:4px;
+  background:transparent;color:var(--accent);cursor:pointer;line-height:1.5;transition:background .2s,color .2s,transform .25s var(--ease)}
+.dx:hover{background:var(--accent-bg);border-color:var(--accent-bg);color:#fff;transform:translateY(-1px)}
+.sheet .dx{color:var(--blood);border-color:var(--blood)}.sheet .dx:hover{color:#fff}
+.dicepop{position:fixed;right:1rem;bottom:1rem;z-index:50;width:min(340px,calc(100vw - 2rem));padding:.9rem 1rem;background:var(--ink);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);animation:rise .3s var(--ease)}
+.dicepop[hidden]{display:none}
+.dp-head{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-family:var(--font-ui);color:var(--bone)}
+.dp-dice{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0}
+.die-tile{min-width:46px;height:46px;display:grid;place-items:center;border:1.5px solid var(--sage-dim);border-radius:8px;background:var(--ink-3);
+  font-family:var(--font-title);font-size:1.5rem;color:var(--bone)}
+.die-tile.rolling{animation:shake .12s linear infinite;border-color:var(--accent)}
+.die-tile.settle{animation:bump .35s var(--ease)}
+.die-tile.top{background:var(--accent-bg);border-color:var(--accent-bg);color:#fff}
+.dp-sum{margin:.2rem 0;font-family:var(--font-ui);font-weight:700;font-size:1.05rem;color:var(--bone)}
+.dp-sum.ok{color:var(--ok)}.dp-sum.bad{color:var(--bad)}
+.dp-hint{margin:0;font-family:var(--font-ui);font-size:.82rem;color:var(--sage-dim)}
+.dp-hist{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--line);max-height:7rem;overflow:auto;font-family:var(--font-ui);font-size:.78rem;color:var(--sage-dim)}
+.dp-hist li{padding:.1rem 0}
+.enotes-view{margin:.5rem 0 .2rem;font-size:.97rem}
+.estat .btn.icon-btn{width:32px;height:32px;min-height:32px}
+@media print{.dicepop{display:none!important}}

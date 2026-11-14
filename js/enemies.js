@@ -65,9 +65,17 @@
           onChange: (n) => { c[key][sub] = n; paintState(); persist(); } });
         boxes[key + sub] = b.input; return b.node;
       };
-      const stat = (key, label) => el('div', { class: 'estat' }, el('span', { class: 'lbl', text: label }), nb(key, 'cur', label), nb(key, 'max', label));
+      const stat = (key, label) => el('div', { class: 'estat' }, el('span', { class: 'lbl', text: label }), nb(key, 'cur', label), nb(key, 'max', label),
+        key === 'gd' ? null : el('button', { class: 'btn sm icon-btn ghost', type: 'button', title: t('en.save', label), 'aria-label': `${c.name}: ${t('en.save', label)}`, html: MB.icons.d20,
+          onclick: () => MB.rollDice('d20', { label: `${c.name}: ${t('en.save', label)}`, target: c[key].cur }) }));
       const dmg = el('input', { type: 'number', min: 0, max: 99, value: 1, 'aria-label': t('en.damage'), class: 'dmg' });
       const refresh = () => { for (const k of ['vig', 'cla', 'spi', 'gd']) { boxes[k + 'cur'].value = c[k].cur; } paintState(); persist(); };
+      const notesView = el('p', { class: 'enotes-view' });
+      const paintNotes = () => notesView.replaceChildren(...(c.notes ? MB.diceify(c.notes, c.name) : [el('span', { class: 'muted', text: t('en.notes') })]));
+      const notesEdit = el('textarea', { rows: 3, class: 'enotes', hidden: true, placeholder: t('en.notes'), 'aria-label': t('en.notes'), maxlength: 1500,
+        oninput: (e) => { c.notes = e.target.value; paintNotes(); persist(); } });
+      const editBtn = el('button', { class: 'btn sm ghost', type: 'button', text: t('en.editNotes'), onclick: () => { notesEdit.hidden = !notesEdit.hidden; if (!notesEdit.hidden) notesEdit.focus(); } });
+      paintNotes();
       const node = el('article', { class: 'rcard enemy' },
         el('div', { class: 'enemy-head' },
           el('input', { type: 'text', class: 'ename', value: c.name, maxlength: 80, 'aria-label': t('en.name'), oninput: (e) => { c.name = e.target.value; persist(); } }),
@@ -84,8 +92,9 @@
           } }),
           el('button', { class: 'btn sm', type: 'button', text: t('en.restore'), onclick: () => { c.gd.cur = c.gd.max; if (c.status === 'scar') c.status = ''; out.textContent = ''; refresh(); } })),
         out,
-        el('textarea', { rows: 2, class: 'enotes', placeholder: t('en.notes'), 'aria-label': t('en.notes'), maxlength: 1500, oninput: (e) => { c.notes = e.target.value; persist(); } }));
-      node.querySelector('textarea').value = c.notes;
+        notesView, editBtn,
+        notesEdit);
+      notesEdit.value = c.notes;
       paintState();
       return node;
     }
